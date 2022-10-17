@@ -1,0 +1,33 @@
+
+<table
+	class="rounded-t-lg m-5 w-5/6 mx-auto text-gray-100 bg-gradient-to-l from-indigo-500 to-indigo-800">
+	<thead class="text-left border-b-2 border-indigo-300">
+		<tr>
+			<th class="px-4 py-3">foto</th>
+			<th class="px-4 py-3">id</th>
+			<th class="px-4 py-3">talla</th>
+			<th class="px-4 py-3">modelo</th>
+			<th class="px-4 py-3">sexo</th>
+			<th class="px-4 py-3">color</th>
+			<th class="px-4 py-3">precio</th>
+			<th class="px-4 py-3">marca</th>
+			<th class="px-4 py-3">extra</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{{#.}}
+		<tr class="border-b border-indigo-400">
+			<td class="px-4 py-3"><img src="subidas/{{id}}.jpg" style="height: 80px"/></td>
+			<td class="px-4 py-3">{{id}}</td>
+			<td class="px-4 py-3">{{talla}}</td>
+			<td class="px-4 py-3">{{modelo}}</td>
+			<td class="px-4 py-3">{{sexo}}</td>
+			<td class="px-4 py-3">{{color}}</td>
+			<td class="px-4 py-3">{{precio}}</td>
+			<td class="px-4 py-3">{{marca}}</td>
+			<td class="px-4 py-3"><a href="#" onclick="alert('TODO')">Ver mas</a></td>
+		</tr>
+		{{/.}}
+	</tbody>
+</table>
