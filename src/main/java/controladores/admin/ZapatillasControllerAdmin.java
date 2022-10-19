@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import modelo.Usuario;
 import modelo.Zapatilla;
+import servicios.ServicioCategorias;
 import servicios.ServicioZapatilla;
 import utilidadesArchivos.GestorArchivos;
 
@@ -18,6 +19,9 @@ public class ZapatillasControllerAdmin {
 	
 	@Autowired
 	private ServicioZapatilla zapatillaDAO;
+	
+	@Autowired
+	private ServicioCategorias servicioCategorias;
 	
 	@RequestMapping("gestionarZapatillas")
 	public String gestionarZapatillas(Model model) {
@@ -34,6 +38,7 @@ public class ZapatillasControllerAdmin {
 	@RequestMapping("nuevaZapatilla")
 	public String nuevaZapatilla(Model model) {
 		model.addAttribute("zapatilla", new Zapatilla());
+		model.addAttribute("categorias", servicioCategorias.obtenerCategoriasParaDesplegable());
 		return "admin/formRegistroZapatilla";
 	}
 	

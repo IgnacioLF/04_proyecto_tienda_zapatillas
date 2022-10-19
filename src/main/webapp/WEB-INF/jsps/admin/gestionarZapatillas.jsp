@@ -25,6 +25,7 @@
 				<th class="px-4 py-3">color</th>
 				<th class="px-4 py-3">precio</th>
 				<th class="px-4 py-3">marca</th>
+				<th class="px-4 py-3">categoria</th>
 				<th class="px-4 py-3">Eliminar</th>
 				<th class="px-4 py-3">Editar</th>
 			</tr>
@@ -42,6 +43,7 @@
 					<td class="px-4 py-3">${zapatilla.color}</td>
 					<td class="px-4 py-3">${zapatilla.precio}</td>
 					<td class="px-4 py-3">${zapatilla.marca}</td>
+					<td class="px-4 py-3">${zapatilla.categoria.nombre}</td>
 					<td class="px-4 py-3"><a class="text-[#FF6666] hover:text-[#FF1A1A] font-bold border-[2px] border-[#FF6666] hover:border-[#FF1A1A] py-1 px-2 rounded-lg bg-[#DC143C] hover:bg-[#FF6666]" onclick="return confirm('¿seguro?');" href="borrarZapatilla?idBorrar=${zapatilla.id}">X</a></td>
 					<td class="px-4 py-3"><a class="text-[#FFBF00] hover:text-[#FFEA00] font-bold border-[2px] border-[#FFBF00] hover:border-[#FFEA00] py-1 px-2 rounded-lg bg-[#FCF55F] hover:bg-[#FFBF00]" href="editarZapatilla?idEditar=${zapatilla.id}">Editar</a></td>
 				</tr>

@@ -1,8 +1,10 @@
 package modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,12 @@ public class Zapatilla {
 	private String color;
 	private double precio;
 	private String marca;
+	
+	@ManyToOne(targetEntity = Categoria.class, optional = false, fetch = FetchType.EAGER)
+	private Categoria categoria;
+	
+	@Transient
+	private int idCategoria;
 	
 	@Transient
 	private MultipartFile foto;
@@ -91,6 +99,22 @@ public class Zapatilla {
 	}
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	public MultipartFile getFoto() {
