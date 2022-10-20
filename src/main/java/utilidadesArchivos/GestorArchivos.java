@@ -7,6 +7,18 @@ import modelo.Zapatilla;
 
 
 public class GestorArchivos {
+	
+	public static boolean borrarImagenesZapatilla(String idZapatilla, String rutaRealDelProyecto) {
+		File f = new File(rutaRealDelProyecto+"/subidas/"+idZapatilla+".jpg");
+		File f2 = new File(rutaRealDelProyecto+"/subidas/"+idZapatilla+"-caja.jpg");
+		if(f.delete() && f2.delete()) {
+			System.out.println("archivo borrado correctamente");
+			return true;
+		}else {
+			System.out.println("no se pudo borrar el archivo");
+			return false;
+		}
+	}
 
 	public static void guardarFotoZapatilla(Zapatilla z, String rutaReal) {
 		String nombreArchivo = z.getId() + ".jpg";

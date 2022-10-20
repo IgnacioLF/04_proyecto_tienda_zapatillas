@@ -11,7 +11,7 @@
 
 	introduce tus datos:
 
-	<springform:form modelAttribute="zapatilla" action="guardarNuevaZapatilla" enctype="multipart/form-data">
+	<springform:form modelAttribute="zapatilla" action="actualizarZapatilla" enctype="multipart/form-data">
 	id: <springform:input path="id"/> <br>
 	talla: <springform:input path="talla"/> <br>
 	modelo: <springform:input path="modelo"/> <br>	
@@ -19,6 +19,11 @@
 	color: <springform:input path="color"/> <br>
 	precio: <springform:input path="precio"/> <br>
 	marca: <springform:input path="marca"/> <br>
+	foto: <springform:input path="foto" type="file"/> <br>
+ 	categoria: <springform:select path="idCategoria">
+					<springform:options items="${categorias}"/>
+			   </springform:select><br> 
+	fotoCaja: <springform:input path="fotoCaja" type="file"/> <br>
 	<input type="submit" value="GUARDAR CAMBIOS" />
 
 </springform:form>

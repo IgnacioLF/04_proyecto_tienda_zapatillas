@@ -42,13 +42,16 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 	}
 
 	@Override
-	public Zapatilla obtenerUsuarioPorID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Zapatilla obtenerZapatillaPorID(int id) {
+		return (Zapatilla) sessionfactory.getCurrentSession().get(Zapatilla.class, id);
 	}
 
 	@Override
 	public void editarZapatilla(Zapatilla z) {
+		Categoria c =
+				(Categoria)
+				sessionfactory.getCurrentSession().get(Categoria.class, z.getIdCategoria());
+		z.setCategoria(c);
 		sessionfactory.getCurrentSession().merge(z);
 	}
 	

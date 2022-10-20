@@ -1,5 +1,7 @@
 package controladores.admin;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,11 @@ public class ZapatillasControllerAdmin {
 	}
 	
 	@RequestMapping("borrarZapatilla")
-	public String borrarZapatilla(String idBorrar, Model model) {
+	public String borrarZapatilla(String idBorrar, Model model, HttpServletRequest request) {
 		zapatillaDAO.borrarZapatilla(Integer.parseInt(idBorrar));
+		String rutaRealDelProyecto = 
+				request.getServletContext().getRealPath("");
+		GestorArchivos.borrarImagenesZapatilla(idBorrar, rutaRealDelProyecto);
 		return gestionarZapatillas(model);
 	}
 
@@ -54,14 +59,21 @@ public class ZapatillasControllerAdmin {
 	
 	@RequestMapping("editarZapatilla")
 	public String editarZapatilla(String idEditar, Model model) {
-		Zapatilla zapatilla = zapatillaDAO.obtenerUsuarioPorID(Integer.parseInt(idEditar));
+		Zapatilla zapatilla = zapatillaDAO.obtenerZapatillaPorID(Integer.parseInt(idEditar));
+		zapatilla.setIdCategoria(zapatilla.getCategoria().getId());
 		model.addAttribute("zapatilla", zapatilla);
+		model.addAttribute("categorias",servicioCategorias.obtenerCategoriasParaDesplegable());
 		return "admin/formEditarZapatilla";
 	}
 	
 	@RequestMapping("actualizarZapatilla")
-	public String actualizarUsuario(Zapatilla zapatilla, Model model) {
+	public String actualizarUsuario(Zapatilla zapatilla, Model model, HttpServletRequest request) {
 		zapatillaDAO.editarZapatilla(zapatilla);
+		String rutaRealDelProyecto = 
+				request.getServletContext().getRealPath("");
+		GestorArchivos.borrarImagenesZapatilla(Integer.toString(zapatilla.getId()), rutaRealDelProyecto);
+		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
+		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
 		return gestionarZapatillas(model);
 	}
 }

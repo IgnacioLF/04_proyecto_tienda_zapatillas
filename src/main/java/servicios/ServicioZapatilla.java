@@ -12,7 +12,7 @@ public interface ServicioZapatilla {
 	
 	public void borrarZapatilla(int id);
 	
-	public Zapatilla obtenerUsuarioPorID(int id);
+	public Zapatilla obtenerZapatillaPorID(int id);
 	
 	public void editarZapatilla(Zapatilla z);
 	
