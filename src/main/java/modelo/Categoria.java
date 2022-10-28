@@ -26,6 +26,16 @@ public class Categoria {
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	public Categoria() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Categoria(String nombre, String descripcion) {
+	super();
+	this.nombre = nombre;
+	this.descripcion = descripcion;
+}
 
 	public String getNombre() {
 		return nombre;

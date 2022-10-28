@@ -48,6 +48,20 @@ public class Zapatilla {
 		this.marca = marca;
 	}
 	
+	
+	
+	public Zapatilla(int talla, String modelo, String sexo, String color, double precio, String marca,
+			Categoria categoria) {
+		super();
+		this.talla = talla;
+		this.modelo = modelo;
+		this.sexo = sexo;
+		this.color = color;
+		this.precio = precio;
+		this.marca = marca;
+		this.categoria = categoria;
+	}
+
 	public Zapatilla(int id, int talla, String modelo, String sexo, String color, double precio, String marca) {
 		super();
 		this.id = id;
