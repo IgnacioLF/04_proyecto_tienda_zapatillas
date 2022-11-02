@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.Gson;
+
 import modelo.Usuario;
 import servicios.ServicioCarrito;
 
@@ -30,6 +32,19 @@ public class ServicioWebCarrito {
 		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
 				
 	}
+	
+	@RequestMapping("obtenerProductosCarrito")
+	public ResponseEntity<String> obtenerProductosCarrito(HttpServletRequest request){
+		String respuesta = "";
+		
+		respuesta = new Gson().toJson( 
+				servicioCarrito.obtenerProductoCarrito(
+					(Usuario)request.getSession().getAttribute("usuario")
+						));
+		
+		
+		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
+	}//end obtenerProductosCarrito
 
 }
 

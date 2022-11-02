@@ -11,16 +11,24 @@ import com.google.gson.Gson;
 import servicios.ServicioZapatilla;
 
 @Controller
+@RequestMapping("ServicioZapatillas/")
 public class ServicioWebZapatillas {
 
 	@Autowired
 	private ServicioZapatilla zapatillasDAO;
 	
-	@RequestMapping("ServicioZapatillas")
+	@RequestMapping("obtenerZapatillas")
 	public ResponseEntity<String> obtenerzapatillas() {
 		
 		String respuesta = new Gson().toJson(zapatillasDAO.obtenerZapatilla());
 		
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
+	}
+	
+	@RequestMapping("obtenerZapatillaPorId")
+	public ResponseEntity<String> obtenerZapatillaPorId(String id){
+		String json = 
+			new Gson().toJson(zapatillasDAO.obtenerZapatillaPorID(Integer.parseInt(id)));
+		return new ResponseEntity<String>(json,HttpStatus.OK);		
 	}
 }

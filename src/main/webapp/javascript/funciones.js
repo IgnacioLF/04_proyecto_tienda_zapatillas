@@ -2,7 +2,7 @@
 function mostrar_productos() {
   //pedir al servicio de libros los libros
   //y mostrar su resultado usando una plantilla
-  $.get("ServicioZapatillas", function (res) {
+  $.get("ServicioZapatillas/obtenerZapatillas", function (res) {
     var libros = JSON.parse(res);
     var resultado = Mustache.render(plantillas.productos, libros);
     $("#contenedor").html(resultado);
@@ -67,6 +67,28 @@ function identificar_usuario() {
     }, //end success
   }); //end ajax
 } //end identificar_usuario
+
+function mostrar_productos_carrito() {
+  if (nombre_login == "") {
+    alert("debes identificarte para acceder a tu carrito");
+    return;
+  }
+
+  $.getJSON("ServicioWebCarrito/obtenerProductosCarrito", function (res) {
+    alert(res);
+    console.log(res);
+    $("#contenedor").html(Mustache.render(plantillas.carrito, res));
+    $(".input_cantidad").change(function () {
+      alert("mandar al servidor la nueva cantidad, por hacer...");
+    });
+    $(".enlace_borrar_producto").click(function () {
+      alert("borrar producto del carrito, por hacer...");
+    });
+    $("#realizar_pedido").click(function () {
+      checkout_paso_1();
+    });
+  });
+} //end mostrar_productos_carrito
 
 function logout() {
   $.ajax("ServicioWebUsuarios/logout", {

@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 public class Carrito {
 	
 	@OneToOne
-	@JoinColumn(referencedColumnName = "id")
 	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL)
