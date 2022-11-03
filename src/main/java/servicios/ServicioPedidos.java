@@ -1,6 +1,9 @@
 package servicios;
 
+import java.util.List;
+
 import datos.servicioWEB.ResumenPedido;
+import modelo.Pedido;
 import modelo.Usuario;
 
 public interface ServicioPedidos {
@@ -13,4 +16,10 @@ public interface ServicioPedidos {
 	ResumenPedido obtenerResumenDelPedido(Usuario usuario);
 	
 	void confirmarPedido(Usuario usuario);
+	
+	List<Pedido> obtenerPedidos();
+	
+	Pedido obtenerPedidoPorId(int idPedido);
+	
+	void actualizarEstadoPedido(int idPedido, String estado);
 }

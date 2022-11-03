@@ -1,5 +1,7 @@
 package serviciosimpl;
 
+import java.util.List;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -128,5 +130,32 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		sessionFactory.getCurrentSession().update(p);
 	}//end confirmarPedido
 
+	@Override
+	public List<Pedido> obtenerPedidos() {
+		//usando hibernate tenemos 3 formas de hacer consultas:
+		//HQL -> Hibernate Query Language (pseudo SQL)
+		//    -> devuelve objetos de entidades
+		//SQL -> devuelve diferentes tipos de coleccion
+		//    -> la mas comun: List<Map<String,Object>>
+		//Criteria -> evita en gran parte el uso de strings
+		//		   -> devuelve objetos de entidades
+		List<Pedido> pedidos = 
+				sessionFactory.getCurrentSession().
+				createQuery("from Pedido").list();
+		return pedidos;
+	}
+
+	@Override
+	public Pedido obtenerPedidoPorId(int idPedido) {
+		return (Pedido)sessionFactory.getCurrentSession().get(Pedido.class, 
+				idPedido);
+	}
+
+	@Override
+	public void actualizarEstadoPedido(int idPedido, String estado) {
+		Pedido p = obtenerPedidoPorId(idPedido);
+		p.setEstado(estado);
+		sessionFactory.getCurrentSession().update(p);
+	}
 	
 }
