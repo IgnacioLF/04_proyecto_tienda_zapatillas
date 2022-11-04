@@ -20,6 +20,9 @@ public class ResumenPedido {
 	private String titularTarjeta;
 	private String numeroTarjeta;
 	
+	//paso 3 
+	private String detalles_envio;
+	
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
@@ -68,7 +71,10 @@ public class ResumenPedido {
 	public void setCp(String cp) {
 		this.cp = cp;
 	}
-	
-	
-	
+	public String getDetalles_envio() {
+		return detalles_envio;
+	}
+	public void setDetalles_envio(String detalles_envio) {
+		this.detalles_envio = detalles_envio;
+	}
 }

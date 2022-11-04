@@ -36,6 +36,9 @@ public class Pedido {
 	
 	private String numeroTarjeta;
 	
+	// paso 3
+	private String detalles_pedido;
+	
 	//la siguiente variable indica la situacion en la 
 	//que se encuentra el pedido:
 	private String estado;
@@ -154,7 +157,15 @@ public class Pedido {
 	public void setCp(String cp) {
 		this.cp = cp;
 	}
-		
-	
+
+
+	public String getDetalles_pedido() {
+		return detalles_pedido;
+	}
+
+
+	public void setDetalles_pedido(String detalles_pedido) {
+		this.detalles_pedido = detalles_pedido;
+	}
 	
 }

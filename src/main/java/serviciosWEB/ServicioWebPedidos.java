@@ -40,13 +40,22 @@ public class ServicioWebPedidos {
 		servicioPedidos.procesarPaso2(titular, numero, 
 				u
 				);
-		ResumenPedido resumen = servicioPedidos.obtenerResumenDelPedido(
-				u
-				);
-		respuesta = "ok:"+new Gson().toJson(resumen);		
+		respuesta = "ok";		
 		
 		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
 	}//end paso2
+	
+	@RequestMapping("paso3")
+	public ResponseEntity<String> paso1(String detalles_envio, HttpServletRequest request){
+		String respuesta = "";
+		Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+		servicioPedidos.procesarPaso3(detalles_envio,(Usuario)request.getSession().getAttribute("usuario") );
+		ResumenPedido resumen = servicioPedidos.obtenerResumenDelPedido(
+				u
+				);
+		respuesta = "ok:"+new Gson().toJson(resumen);	;
+		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
+	}
 	
 	@RequestMapping("confirmarPedido")
 	public ResponseEntity<String> confirmarPedido(HttpServletRequest request){

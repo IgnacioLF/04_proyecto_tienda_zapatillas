@@ -32,15 +32,30 @@ function checkout_paso_2() {
       titular: $("#titular_tarjeta").val(),
       numero: $("#numero_tarjeta").val(),
     }).done(function (res) {
+      if (res == "ok") {
+        checkout_paso_3();
+      } else {
+        alert(res);
+      }
+    }); //done
+  }); //end click aceptar_paso_2
+} //end checkout_paso_2
+
+function checkout_paso_3() {
+  $("#contenedor").html(plantillas.checkout_3);
+  $("#aceptar_paso_3").click(function () {
+    $.post("ServicioWebPedidos/paso3", {
+      detalles_envio: $("#detalles_envio").val(),
+    }).done(function (res) {
       if (res.substring(0, 2) == "ok") {
         let json = JSON.parse(res.substring(3, res.length));
-        let html = Mustache.render(plantillas.checkout_3, json);
+        let html = Mustache.render(plantillas.checkout_4, json);
         $("#contenedor").html(html);
         $("#boton_confirmar_pedido").click(checkout_confirmar);
       }
     }); //done
   }); //end click aceptar_paso_2
-} //end checkout_paso_2
+}
 
 function checkout_confirmar() {
   $.ajax("ServicioWebPedidos/confirmarPedido", {

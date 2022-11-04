@@ -13,6 +13,8 @@ public interface ServicioPedidos {
 	
 	void procesarPaso2(String titular, String numero, Usuario usuario);
 	
+	void procesarPaso3(String detalles_envio, Usuario usuario);
+	
 	ResumenPedido obtenerResumenDelPedido(Usuario usuario);
 	
 	void confirmarPedido(Usuario usuario);

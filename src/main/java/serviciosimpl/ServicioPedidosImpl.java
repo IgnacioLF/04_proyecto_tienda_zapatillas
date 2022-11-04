@@ -67,6 +67,7 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		resumen.setCp(p.getCp());
 		resumen.setTitularTarjeta(p.getTitularTarjeta());
 		resumen.setNumeroTarjeta(p.getNumeroTarjeta());
+		resumen.setDetalles_envio(p.getDetalles_pedido());
 		
 		resumen.setZapatillas(
 				servicioCarrito.obtenerProductoCarrito(usuario)
@@ -156,6 +157,14 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		Pedido p = obtenerPedidoPorId(idPedido);
 		p.setEstado(estado);
 		sessionFactory.getCurrentSession().update(p);
+	}
+
+	@Override
+	public void procesarPaso3(String detalles_envio, Usuario usuario) {
+		Pedido p = obtenerPedidoActual(usuario);
+		p.setDetalles_pedido(detalles_envio);
+		sessionFactory.getCurrentSession().update(p);
+		
 	}
 	
 }

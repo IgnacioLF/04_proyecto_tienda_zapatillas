@@ -1,32 +1,11 @@
-<div>REALIZAR - PEDIDO PASO 3</div>
-<div>resumen del pedido:</div>
+<div>REALIZAR PEDIDO - PASO 2</div>
 
-{{#zapatillas}}
-<div style="margin: 10px">
-  modelo: {{modelo}} <br />
-  <img style="height: 60px" src="subidas/{{libro_id}}.jpg" /> <br />
-  cantidad: {{cantidad}} <br />
-  precio/unidad: {{precio}}
-</div>
-{{/zapatillas}}
+<div>introduce los datos de pago</div>
+<div>(no introducir datos reales, proyecto en desarrollo)</div>
 
-<div>datos de envio:</div>
-<div style="margin: 10px">
-  nombre completo : {{nombreCompleto}} <br />
-  direccion: {{direccion}} <br />
-  ciudad: {{ciudad}} <br />
-  provincia: {{provincia}} <br />
-  cp: {{cp}} <br />
-</div>
+<div>detalles del envio: <input type="text" id="detalles_envio" /> <br /></div>
 
-<div>datos de pago:</div>
-<div style="margin: 10px">
-  titular tarjeta: {{titularTarjeta}} <br />
-  numero tarjeta: {{numeroTarjeta}} <br />
-</div>
-
-<div>
-  <button style="margin: 10px; padding: 10px" id="boton_confirmar_pedido">
-    CONFIRMAR PEDIDO
-  </button>
-</div>
+<br />
+<button style="padding: 10px; margin-left: 100px" id="aceptar_paso_3">
+  ACEPTAR
+</button>
