@@ -31,7 +31,10 @@ public class ServicioWebUsuarios {
 	@RequestMapping("identificarUsuario")
 	public ResponseEntity<String> 
 		identificarUsuario(String email, String pass, HttpServletRequest request){
+		System.out.println("email : " + email);
+		System.out.println("pass : " + pass);
 		String respuesta = "";
+		HttpStatus codeHttp = HttpStatus.OK;
 		//comprobar en bd si el conjunto email pass es correcto
 		Usuario u = servicioUsuarios.obtenerUsuarioPorEmailYPass(email, pass);
 		if( u != null ) {
@@ -39,8 +42,10 @@ public class ServicioWebUsuarios {
 			respuesta = "ok," + u.getNombre();
 		}else {
 			respuesta = "error, email o pass incorrectos";
+			codeHttp = HttpStatus.FORBIDDEN;
+			
 		}
-		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
+		return new ResponseEntity<String>(respuesta,codeHttp);
 	}
 	
 	@RequestMapping("logout")
