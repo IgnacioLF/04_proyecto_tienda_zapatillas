@@ -24,6 +24,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/*"/>
+			<bean id="interceptorAdmin" class="interceptores.InterceptorAdmin"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	<mvc:annotation-driven />
 	<mvc:resources location="/javascript/" mapping="/javascript/**"/>	

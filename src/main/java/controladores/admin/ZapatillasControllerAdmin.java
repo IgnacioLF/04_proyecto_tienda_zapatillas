@@ -1,5 +1,6 @@
 package controladores.admin;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class ZapatillasControllerAdmin {
 	
 	@RequestMapping("guardarNuevaZapatilla")
 	public String guardarNuevaZapatilla(Zapatilla zapatilla, Model model, HttpServletRequest request ) {
+		zapatilla.setFechaImagen(new Date());
 		zapatillaDAO.registrarZapatilla(zapatilla);
 		String rutaRealDelProyecto = 
 				request.getServletContext().getRealPath("");
@@ -68,6 +70,7 @@ public class ZapatillasControllerAdmin {
 	
 	@RequestMapping("actualizarZapatilla")
 	public String actualizarUsuario(Zapatilla zapatilla, Model model, HttpServletRequest request) {
+		zapatilla.setFechaImagen(new Date());
 		zapatillaDAO.editarZapatilla(zapatilla);
 		String rutaRealDelProyecto = 
 				request.getServletContext().getRealPath("");

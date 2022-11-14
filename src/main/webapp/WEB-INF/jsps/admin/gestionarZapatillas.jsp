@@ -34,8 +34,8 @@
 		<tbody>
 			<c:forEach var="zapatilla" items="${zapatillas}">
 				<tr class="border-b border-indigo-400">
-					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}.png"/></td>
-					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}-caja.png"/></td>
+					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}.png?t=${zapatilla.fechaImagen}"/></td>
+					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}-caja.png?t=${zapatilla.fechaImagen}"/></td>
 					<td class="px-4 py-3">${zapatilla.id}</td>
 					<td class="px-4 py-3">${zapatilla.talla}</td>
 					<td class="px-4 py-3">${zapatilla.modelo}</td>

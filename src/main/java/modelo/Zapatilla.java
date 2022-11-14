@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +24,9 @@ public class Zapatilla {
 	private String color;
 	private double precio;
 	private String marca;
+	
+	@Column(nullable = true)
+	private Date fechaImagen;
 	
 	@ManyToOne(targetEntity = Categoria.class, optional = false, fetch = FetchType.EAGER)
 	private Categoria categoria;
@@ -145,6 +151,14 @@ public class Zapatilla {
 
 	public void setFotoCaja(MultipartFile fotoCaja) {
 		this.fotoCaja = fotoCaja;
+	}
+
+	public Date getFechaImagen() {
+		return fechaImagen;
+	}
+
+	public void setFechaImagen(Date fechaImagen) {
+		this.fechaImagen = fechaImagen;
 	}
 	
 }
