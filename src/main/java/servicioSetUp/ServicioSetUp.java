@@ -39,7 +39,7 @@ public class ServicioSetUp implements InterfazSetUp {
 			sessionFactory.getCurrentSession().save(new Zapatilla(42, "air", "hombre", "rojo", 12.2, "nike", deporte));
 			sessionFactory.getCurrentSession().save(new Zapatilla(43, "air2", "mujer", "azul", 12.2, "addidas", verano));
 			sessionFactory.getCurrentSession().save(new Zapatilla(44, "air3", "hombre", "rojo", 16.2, "nike", montana));
-
+			
 			// copiar archivos de portada de libros
 			// desde una ruta fija
 

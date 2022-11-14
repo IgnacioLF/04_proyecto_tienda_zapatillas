@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import constantes.Paginacion;
 import modelo.Categoria;
 import modelo.Zapatilla;
 import servicios.ServicioZapatilla;
@@ -30,9 +31,11 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 	}
 
 	@Override
-	public List<Zapatilla> obtenerZapatilla() {
+	public List<Zapatilla> obtenerZapatilla(int comienzo) {
 		Criteria c = sessionfactory.getCurrentSession().createCriteria(Zapatilla.class);
 		c.addOrder(Order.asc("id"));
+		c.setFirstResult(comienzo);
+		c.setMaxResults(Paginacion.RESULTADOS_POR_PAGINA);
 		
 		return c.list();
 	}

@@ -20,7 +20,7 @@ public class ServicioWebZapatillas {
 	@RequestMapping("obtenerZapatillas")
 	public ResponseEntity<String> obtenerzapatillas() {
 		
-		String respuesta = new Gson().toJson(zapatillasDAO.obtenerZapatilla());
+		String respuesta = new Gson().toJson(zapatillasDAO.obtenerZapatilla(0));
 		
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}

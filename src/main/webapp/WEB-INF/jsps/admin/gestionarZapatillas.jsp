@@ -13,6 +13,7 @@
 <a class="py-4 px-6 bg-gradient-to-l from-indigo-500 to-indigo-800 font-bold text-[18px] text-white hover:text-[#00040f] outline-none rounded-[10px] border-[2px] border-white hover:border-indigo-900" href="nuevaZapatilla">registrar zapatillas</a>
 	<p class="text-lg text-center font-bold m-[3rem] text-[2rem] text-white">Gestión de zapatillas</p>
 	<jsp:include page="menu.jsp"></jsp:include>
+	<div class="text-white">paginacion: <br> <a href="gestionarZapatillas?comienzo=${siguiente}">siguiente</a></div>
 	<table class="rounded-t-lg m-5 w-5/6 mx-auto text-gray-100 bg-gradient-to-l from-indigo-500 to-indigo-800">
 		<thead class="text-left border-b-2 border-indigo-300">
 			<tr>

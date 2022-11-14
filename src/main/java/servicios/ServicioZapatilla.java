@@ -8,7 +8,7 @@ public interface ServicioZapatilla {
 
 	public void registrarZapatilla(Zapatilla z);
 	
-	public List<Zapatilla> obtenerZapatilla();
+	public List<Zapatilla> obtenerZapatilla(int comienzo);
 	
 	public void borrarZapatilla(int id);
 	
