@@ -10,7 +10,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
 <body class="bg-[#00040f]">
-<a class="py-4 px-6 bg-gradient-to-l from-indigo-500 to-indigo-800 font-bold text-[18px] text-white hover:text-[#00040f] outline-none rounded-[10px] border-[2px] border-white hover:border-indigo-900" href="nuevaZapatilla">registrar usuario</a>
+<a class="py-4 px-6 bg-gradient-to-l from-indigo-500 to-indigo-800 font-bold text-[18px] text-white hover:text-[#00040f] outline-none rounded-[10px] border-[2px] border-white hover:border-indigo-900" href="nuevaZapatilla">registrar zapatillas</a>
 	<p class="text-lg text-center font-bold m-[3rem] text-[2rem] text-white">Gestión de zapatillas</p>
 	<jsp:include page="menu.jsp"></jsp:include>
 	<table class="rounded-t-lg m-5 w-5/6 mx-auto text-gray-100 bg-gradient-to-l from-indigo-500 to-indigo-800">
@@ -34,8 +34,8 @@
 		<tbody>
 			<c:forEach var="zapatilla" items="${zapatillas}">
 				<tr class="border-b border-indigo-400">
-					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}.jpg"/></td>
-					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}-caja.jpg"/></td>
+					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}.png"/></td>
+					<td class="px-4 py-3"><img style="height: 60px" src="../subidas/${zapatilla.id}-caja.png"/></td>
 					<td class="px-4 py-3">${zapatilla.id}</td>
 					<td class="px-4 py-3">${zapatilla.talla}</td>
 					<td class="px-4 py-3">${zapatilla.modelo}</td>

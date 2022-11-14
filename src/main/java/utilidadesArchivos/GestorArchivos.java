@@ -9,8 +9,8 @@ import modelo.Zapatilla;
 public class GestorArchivos {
 	
 	public static boolean borrarImagenesZapatilla(String idZapatilla, String rutaRealDelProyecto) {
-		File f = new File(rutaRealDelProyecto+"/subidas/"+idZapatilla+".jpg");
-		File f2 = new File(rutaRealDelProyecto+"/subidas/"+idZapatilla+"-caja.jpg");
+		File f = new File(rutaRealDelProyecto+"\\subidas\\"+idZapatilla+".png");
+		File f2 = new File(rutaRealDelProyecto+"\\subidas\\"+idZapatilla+"-caja.png");
 		if(f.delete() && f2.delete()) {
 			System.out.println("archivo borrado correctamente");
 			return true;
@@ -21,8 +21,8 @@ public class GestorArchivos {
 	}
 
 	public static void guardarFotoZapatilla(Zapatilla z, String rutaReal) {
-		String nombreArchivo = z.getId() + ".jpg";
-		String rutaSubidas = rutaReal + "/subidas";
+		String nombreArchivo = z.getId() + ".png";
+		String rutaSubidas = rutaReal + "\\subidas";
 		//si rutaSubidas no existe, crearla:
 		File fileRutaSubidas = new File(rutaSubidas);
 		if( ! fileRutaSubidas.exists() ) {
@@ -44,8 +44,8 @@ public class GestorArchivos {
 	}
 	
 	public static void guardarFotoCajaZapatilla(Zapatilla z, String rutaReal) {
-		String nombreArchivo = z.getId() + "-caja.jpg";
-		String rutaSubidas = rutaReal + "/subidas";
+		String nombreArchivo = z.getId() + "-caja.png";
+		String rutaSubidas = rutaReal + "\\subidas";
 		//si rutaSubidas no existe, crearla:
 		File fileRutaSubidas = new File(rutaSubidas);
 		if( ! fileRutaSubidas.exists() ) {

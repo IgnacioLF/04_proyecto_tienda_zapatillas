@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,7 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 	@Override
 	public List<Zapatilla> obtenerZapatilla() {
 		Criteria c = sessionfactory.getCurrentSession().createCriteria(Zapatilla.class);
+		c.addOrder(Order.asc("id"));
 		
 		return c.list();
 	}
