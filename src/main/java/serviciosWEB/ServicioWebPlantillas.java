@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,13 @@ public class ServicioWebPlantillas {
 
 	@RequestMapping("ServicioPlantillas")
 	private ResponseEntity<String> plantillas(HttpServletRequest request){
+		
+		String idiomaActual = LocaleContextHolder.getLocale().toString();
+		String carpetaPlantillas = "plantillas";
+		if(idiomaActual.startsWith("en")) {
+			carpetaPlantillas = "plantillas_en";
+		}
+		
 		File plantillas = 
 				new File(request.getServletContext().getRealPath("/plantillas"));
 		File[] archivos = plantillas.listFiles();
