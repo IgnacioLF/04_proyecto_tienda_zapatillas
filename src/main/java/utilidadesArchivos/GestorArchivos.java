@@ -3,6 +3,9 @@ package utilidadesArchivos;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import modelo.Usuario;
 import modelo.Zapatilla;
 
 
@@ -65,5 +68,27 @@ public class GestorArchivos {
 					+ "de momento la imagen es opcional");
 		}
 	}
+	
+	public static void guardarFotoUsuario(Usuario u, CommonsMultipartFile foto, String rutaRealDelProyecto) {
+		String nombreArchivo = "u" + u.getId() + ".png";
+		String rutaSubidas = rutaRealDelProyecto + "/subidas";
+		//si rutaSubidas no existe, crearla:
+		File fileRutaSubidas = new File(rutaSubidas);
+		if( ! fileRutaSubidas.exists() ) {
+			fileRutaSubidas.mkdirs();
+		}
+		//si existe el archivo subido
+		if(foto.getSize() > 0) {
+			try {
+				foto.transferTo(new File(rutaSubidas,nombreArchivo));
+				System.out.println("archivo movido a: " + rutaSubidas);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("no pude mover el archivo a la ruta de subidas");
+				e.printStackTrace();
+			}
+		}else {
+		}
+	}//end guardarFotoUsuario
+	
 	
 }

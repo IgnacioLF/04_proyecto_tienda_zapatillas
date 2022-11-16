@@ -36,6 +36,7 @@ public class ZapatillasControllerAdmin {
 		System.out.println("mostrar datos desde "+ comienzo);
 		
 		model.addAttribute("zapatillas",zapatillaDAO.obtenerZapatilla(modelo,comienzo_int));
+		model.addAttribute("modelo",modelo);
 		model.addAttribute("siguiente",comienzo_int + Paginacion.RESULTADOS_POR_PAGINA);
 		model.addAttribute("anterior", comienzo_int - Paginacion.RESULTADOS_POR_PAGINA);
 		model.addAttribute("total",zapatillaDAO.obtenerTotalDeZapatillas(modelo));

@@ -24,9 +24,27 @@ function cargarEventos() {
 
   $("#registrarme").click(function () {
     $("#contenedor").html(plantillas.registrarme);
-    $("#form_registro_usuario").submit((e) => {
-      e.preventDefault();
-      var nombre = $("#nombre").val();
+    $("#form_registro_usuario").submit(function (e) {
+      //este codigo se ejecuta cuando se
+      //pulsa el boton de submit del form
+      e.preventDefault(); //se cancela el envio de form de forma tradicional
+      //forma nueva para mandar directamente toda la informacion de un form
+      //que tenga o no, uno o mas input type file
+      let formulario = this;
+      let formData = new FormData(formulario);
+      $.ajax("ServicioWebUsuarios/registrarUsuario", {
+        type: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+          alert(res);
+        },
+      });
+    }); //end submit
+
+    /* var nombre = $("#nombre").val();
       var email = $("#email").val();
       var pass = $("#pass").val();
       var edad = $("#edad").val();
@@ -46,8 +64,7 @@ function cargarEventos() {
             $("#apellidos").val("");
           }
         },
-      });
-    });
+      }); */
   });
 
   $("#logout").click(function (e) {

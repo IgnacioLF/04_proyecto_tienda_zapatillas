@@ -18,6 +18,7 @@
 	<table class="rounded-t-lg m-5 w-5/6 mx-auto text-gray-100 bg-gradient-to-l from-indigo-500 to-indigo-800" >
 		<thead class="text-left border-b-2 border-indigo-300">
 			<tr>
+			<th class="px-4 py-3">foto</th>
 				<th class="px-4 py-3">id</th>
 				<th class="px-4 py-3">nombre</th>
 				<th class="px-4 py-3">password</th>
@@ -32,6 +33,7 @@
 		<tbody>
 			<c:forEach var="usuarios" items="${usuarios}">
 				<tr class="border-b border-indigo-400">
+					<th class="px-4 py-3"><img style="height: 80px" src="../subidas/u${usuarios.id}.png"/></th>
 					<td class="px-4 py-3">${usuarios.id}</td>
 					<td class="px-4 py-3">${usuarios.nombre}</td>
 					<td class="px-4 py-3">${usuarios.pass}</td>

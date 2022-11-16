@@ -1,5 +1,7 @@
 package serviciosWEB;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import modelo.Usuario;
 import servicios.ServicioUsuario;
+import utilidadesArchivos.GestorArchivos;
 
 @Controller
 @RequestMapping("ServicioWebUsuarios/")
@@ -22,10 +27,25 @@ public class ServicioWebUsuarios {
 	private ServicioUsuario servicioUsuarios;
 	
 	@RequestMapping("registrarUsuario")
-	public ResponseEntity<String> registrarUsuario(@RequestParam("info") String json){
-		Usuario u = new Gson().fromJson(json, Usuario.class);
-		servicioUsuarios.registrarUsuario(u);
+	public ResponseEntity<String> registrarUsuario(@RequestParam Map<String,Object> formData, @RequestParam("foto") CommonsMultipartFile foto, HttpServletRequest request){
 		String respuesta = "ok";
+		System.out.println("test");
+		System.out.println(formData.toString());
+		Gson gson = new Gson();
+		JsonElement json = gson.toJsonTree(formData);
+		Usuario u = gson.fromJson(json, Usuario.class);
+		System.out.println("Usuario a registrar " + u.toString());
+		String rutaRealDelProyecto = 
+				request.getServletContext().getRealPath("");	
+		
+		servicioUsuarios.registrarUsuario(u);
+		if (foto != null) {
+			GestorArchivos.guardarFotoUsuario(u, foto, rutaRealDelProyecto);	
+		}
+		
+		// @RequestParam("info") String json
+//		Usuario u = new Gson().fromJson(json, Usuario.class);
+//		servicioUsuarios.registrarUsuario(u);
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}
 	@RequestMapping("identificarUsuario")
