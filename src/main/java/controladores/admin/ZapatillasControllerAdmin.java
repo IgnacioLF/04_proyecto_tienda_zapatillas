@@ -29,14 +29,16 @@ public class ZapatillasControllerAdmin {
 	private ServicioCategorias servicioCategorias;
 	
 	@RequestMapping("gestionarZapatillas")
-	public String gestionarZapatillas(Model model, @RequestParam(defaultValue = "0" ) String comienzo) {
+	public String gestionarZapatillas(Model model,@RequestParam(defaultValue = "") String modelo, @RequestParam(defaultValue = "0" ) String comienzo) {
 		
 		int comienzo_int = Integer.parseInt(comienzo);
 		
 		System.out.println("mostrar datos desde "+ comienzo);
 		
-		model.addAttribute("zapatillas",zapatillaDAO.obtenerZapatilla(comienzo_int));
+		model.addAttribute("zapatillas",zapatillaDAO.obtenerZapatilla(modelo,comienzo_int));
 		model.addAttribute("siguiente",comienzo_int + Paginacion.RESULTADOS_POR_PAGINA);
+		model.addAttribute("anterior", comienzo_int - Paginacion.RESULTADOS_POR_PAGINA);
+		model.addAttribute("total",zapatillaDAO.obtenerTotalDeZapatillas(modelo));
 		return "admin/gestionarZapatillas";
 	}
 	
@@ -46,7 +48,7 @@ public class ZapatillasControllerAdmin {
 		String rutaRealDelProyecto = 
 				request.getServletContext().getRealPath("");
 		GestorArchivos.borrarImagenesZapatilla(idBorrar, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"");
+		return gestionarZapatillas(model,"","");
 	}
 
 	@RequestMapping("nuevaZapatilla")
@@ -64,7 +66,7 @@ public class ZapatillasControllerAdmin {
 				request.getServletContext().getRealPath("");
 		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
 		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"");		
+		return gestionarZapatillas(model,"","");		
 	}
 	
 	@RequestMapping("editarZapatilla")
@@ -85,6 +87,6 @@ public class ZapatillasControllerAdmin {
 		GestorArchivos.borrarImagenesZapatilla(Integer.toString(zapatilla.getId()), rutaRealDelProyecto);
 		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
 		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"");
+		return gestionarZapatillas(model,"","");
 	}
 }

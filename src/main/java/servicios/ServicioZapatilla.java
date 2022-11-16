@@ -8,7 +8,9 @@ public interface ServicioZapatilla {
 
 	public void registrarZapatilla(Zapatilla z);
 	
-	public List<Zapatilla> obtenerZapatilla(int comienzo);
+	public int obtenerTotalDeZapatillas(String modelo);
+	
+	public List<Zapatilla> obtenerZapatilla(String modelo, int comienzo);
 	
 	public void borrarZapatilla(int id);
 	

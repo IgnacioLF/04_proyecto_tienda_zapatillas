@@ -14,4 +14,6 @@ public class ConstantesSQL {
 			
 	public static final String BORRAR_PRODUCTOS_CARRITO = 
 			"delete from productocarrito where carrito_id = :carrito_id";
+	
+	public static final String OBTENER_TOTAL_ZAPATILLAS = "select count(id) from zapatilla where modelo like :modelo ";
 }

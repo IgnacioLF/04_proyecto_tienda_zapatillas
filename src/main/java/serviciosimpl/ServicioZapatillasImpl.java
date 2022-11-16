@@ -3,13 +3,16 @@ package serviciosimpl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import constantes.Paginacion;
+import constantesSQL.ConstantesSQL;
 import modelo.Categoria;
 import modelo.Zapatilla;
 import servicios.ServicioZapatilla;
@@ -31,8 +34,9 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 	}
 
 	@Override
-	public List<Zapatilla> obtenerZapatilla(int comienzo) {
+	public List<Zapatilla> obtenerZapatilla(String modelo ,int comienzo) {
 		Criteria c = sessionfactory.getCurrentSession().createCriteria(Zapatilla.class);
+		c.add(Restrictions.like("modelo", "%"+modelo+"%"));
 		c.addOrder(Order.asc("id"));
 		c.setFirstResult(comienzo);
 		c.setMaxResults(Paginacion.RESULTADOS_POR_PAGINA);
@@ -58,6 +62,13 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 				sessionfactory.getCurrentSession().get(Categoria.class, z.getIdCategoria());
 		z.setCategoria(c);
 		sessionfactory.getCurrentSession().merge(z);
+	}
+
+	@Override
+	public int obtenerTotalDeZapatillas(String modelo) {
+		SQLQuery query = sessionfactory.getCurrentSession().createSQLQuery(ConstantesSQL.OBTENER_TOTAL_ZAPATILLAS);
+		query.setParameter("modelo", "%" + modelo + "%");
+		return Integer.parseInt(query.list().get(0).toString());
 	}
 	
 	
