@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,8 +11,13 @@
 <body>
 
 <jsp:include page="menu.jsp"></jsp:include>
+	<div class="text-white" style="text-align: right;margin: 10px">
+	<a href="?lang=es">español</a>
+	<a href="?lang=en">ingles</a>
+	<a href="?lang=fr">frances</a>
+</div>
 
-listado de pedidos: <br>
+<spring:message code="admin.listadoDePedidos" />: <br>
 
 <c:forEach var="pedido" items="${pedidos}">
 	<div style="margin: 20px">

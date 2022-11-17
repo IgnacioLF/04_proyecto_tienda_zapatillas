@@ -1,5 +1,6 @@
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <div>
-	<a href="gestionarUsuarios">gestionar usuarios</a><br>
-	<a href="gestionarZapatillas">gestionar zapatillas</a><br>
-	 <a href="gestionarPedidos">gestionar pedidos</a> &nbsp;&nbsp;
+	<a href="gestionarUsuarios"><spring:message code="admin.gestionarusuarios" /></a><br>
+	<a href="gestionarZapatillas"><spring:message code="admin.gestionarzapatillas" /></a><br>
+	 <a href="gestionarPedidos"><spring:message code="admin.gestionarpedidos" /></a> &nbsp;&nbsp;
 </div>
