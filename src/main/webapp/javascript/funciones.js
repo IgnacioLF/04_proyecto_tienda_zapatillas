@@ -35,7 +35,7 @@ function comprar_producto() {
     var cantidad = $("#input-cantidad-" + id).val();
     //para hacer un post con jquery es mas comodo
     //lo siguiente:
-    $.post("ServicioWebCarrito/agregarLibro", {
+    $.post("ServicioWebCarrito/agregarZapatilla", {
       idProducto: id,
       cantidad,
     }).done(function (res) {

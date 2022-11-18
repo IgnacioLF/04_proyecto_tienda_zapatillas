@@ -40,9 +40,10 @@
 			<c:forEach var="usuarios" items="${usuarios}">
 				<tr class="border-b border-indigo-400">
 					<th class="px-4 py-3">
-					<object style="height:80px;" src="../subidas/u${usuarios.id}.png">
+			<!--  		<object style="height:80px;" src="../subidas/u${usuarios.id}.png">
 						<img style="height: 80px" src="../subidas/nouser.png"/>
-					</object>
+					</object>-->
+					<img style="height:80px;" src="../subidas/u${usuarios.id}.png">
 					</th>
 					<td class="px-4 py-3">${usuarios.id}</td>
 					<td class="px-4 py-3">${usuarios.nombre}</td>

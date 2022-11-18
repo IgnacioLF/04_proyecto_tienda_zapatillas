@@ -71,7 +71,7 @@ public class GestorArchivos {
 	
 	public static void guardarFotoUsuario(Usuario u, CommonsMultipartFile foto, String rutaRealDelProyecto) {
 		String nombreArchivo = "u" + u.getId() + ".png";
-		String rutaSubidas = rutaRealDelProyecto + "/subidas";
+		String rutaSubidas = rutaRealDelProyecto + "\\subidas";
 		//si rutaSubidas no existe, crearla:
 		File fileRutaSubidas = new File(rutaSubidas);
 		if( ! fileRutaSubidas.exists() ) {

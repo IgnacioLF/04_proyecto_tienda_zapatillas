@@ -20,11 +20,15 @@ public class ServicioWebCarrito {
 	@Autowired
 	private ServicioCarrito servicioCarrito;
 	
-	@RequestMapping("agregarLibro")
-	public ResponseEntity<String> agregarLibro(String idProducto, String cantidad, HttpServletRequest request){
+	@RequestMapping("agregarZapatilla")
+	public ResponseEntity<String> agregarZapatilla(String idProducto, String cantidad, HttpServletRequest request){
+		System.out.println("id producto" + idProducto);
+		System.out.println("cantidad " + cantidad);
+		System.out.println("usuario" + request.getSession().getAttribute("usuario"));
 		String respuesta= "agregar el producto de id: " + idProducto + "cantidad : " + cantidad + 
 				" al carrito del usuario: " + 
 				((Usuario)request.getSession().getAttribute("usuario")).getNombre();
+		System.out.println(respuesta);
 		servicioCarrito.agregarProducto((Usuario)request.getSession().getAttribute("usuario"), Integer.parseInt(idProducto), Integer.parseInt(cantidad));
 		
 		 respuesta = "producto agregado al carrito correctamente";

@@ -57,12 +57,12 @@ public class ServicioWebUsuarios {
 		HttpStatus codeHttp = HttpStatus.OK;
 		//comprobar en bd si el conjunto email pass es correcto
 		Usuario u = servicioUsuarios.obtenerUsuarioPorEmailYPass(email, pass);
+		
 		if( u != null ) {
 			request.getSession().setAttribute("usuario", u);
-			respuesta = "ok," + u.getNombre();
+			respuesta = "ok," + u.getId();
 		}else {
 			respuesta = "error, email o pass incorrectos";
-			codeHttp = HttpStatus.FORBIDDEN;
 			
 		}
 		return new ResponseEntity<String>(respuesta,codeHttp);
