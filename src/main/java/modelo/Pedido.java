@@ -167,5 +167,16 @@ public class Pedido {
 	public void setDetalles_pedido(String detalles_pedido) {
 		this.detalles_pedido = detalles_pedido;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Pedido [usuario=" + usuario + ", productosPedido=" + productosPedido + ", nombreCompleto="
+				+ nombreCompleto + ", direccion=" + direccion + ", provincia=" + provincia + ", ciudad=" + ciudad
+				+ ", cp=" + cp + ", titularTarjeta=" + titularTarjeta + ", numeroTarjeta=" + numeroTarjeta
+				+ ", detalles_pedido=" + detalles_pedido + ", estado=" + estado + ", id=" + id + "]";
+	}
+	
+	
 	
 }

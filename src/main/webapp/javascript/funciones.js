@@ -74,8 +74,8 @@ function mostrar_productos_carrito() {
     return;
   }
 
-  $.getJSON("ServicioWebCarrito/obtenerProductosCarrito", function (res) {
-    alert(res);
+  $.getJSON(`ServicioWebCarrito/obtenerProductosCarrito?userId=${nombre_login}`, function (res) {
+    // alert(res);
     console.log(res);
     $("#contenedor").html(Mustache.render(plantillas.carrito, res));
     $(".input_cantidad").change(function () {
