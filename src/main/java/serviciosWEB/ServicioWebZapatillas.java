@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
+import datos.servicioWEB.RespuestaZapatillas;
 import servicios.ServicioZapatilla;
 
 @Controller
@@ -23,7 +26,11 @@ public class ServicioWebZapatillas {
 		
 		int comienzo_int = Integer.parseInt(comienzo);
 		
-		String respuesta = new Gson().toJson(zapatillasDAO.obtenerZapatilla(modelo,comienzo_int));
+		RespuestaZapatillas rz = new RespuestaZapatillas();
+		rz.setZapatillas(zapatillasDAO.obtenerZapatilla(modelo,comienzo_int));
+		rz.setTotal(zapatillasDAO.obtenerTotalDeZapatillas(modelo));
+
+		String respuesta = new Gson().toJson(rz);
 		
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}
