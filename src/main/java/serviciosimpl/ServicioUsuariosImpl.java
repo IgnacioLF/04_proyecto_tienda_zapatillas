@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import modelo.Pedido;
+import modelo.ProductoCarrito;
+import modelo.ProductoPedido;
 import modelo.Usuario;
 import servicios.ServicioUsuario;
 
@@ -34,6 +37,33 @@ public class ServicioUsuariosImpl implements ServicioUsuario {
 	@Override
 	public void borrarUsuario(int id) {
 		Usuario u = (Usuario) sessionFactory.getCurrentSession().get(Usuario.class, id);
+		
+		//el usuario puede tener carrito, pedidos etc, vamos a borrar 
+		//todo eso primero
+		if(u.getCarrito() != null) {
+			List<ProductoCarrito> pcs = u.getCarrito().getProductosCarrito();
+			for (ProductoCarrito productoCarrito : pcs) {
+				sessionFactory.getCurrentSession().delete(productoCarrito);
+			}//end for
+			sessionFactory.getCurrentSession().delete(u.getCarrito());
+		}//end if
+		//borrar tambien los pedidos del usuario
+		Criteria c = 
+				sessionFactory.getCurrentSession().createCriteria(Pedido.class);
+		Criteria cMod= c.createCriteria("usuario").add(
+				Restrictions.eq("id", u.getId()));
+		//la anterior criteria devolveria los pedidos del usuario de id indicado
+		List<Pedido> pedidosDelUsuario = cMod.list();
+		//hibernate hara una consulta eficiente para sacar los pedidos
+		//que tenga el usuario de id indicado
+		for (Pedido pedido : pedidosDelUsuario) {
+			List<ProductoPedido> pps = pedido.getProductosPedido();
+			for (ProductoPedido pp : pps) {
+				sessionFactory.getCurrentSession().delete(pp);
+			}
+			sessionFactory.getCurrentSession().delete(pedido);
+		}	
+		
 		sessionFactory.getCurrentSession().delete(u);
 	}
 
