@@ -9,7 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -19,10 +26,15 @@ public class Zapatilla {
 	@GeneratedValue
 	private int id;
 	private int talla;
+	
 	private String modelo;
+	
 	private String sexo;
+	
 	private String color;
+	
 	private double precio;
+	
 	private String marca;
 	
 	@Column(nullable = true)
@@ -160,5 +172,14 @@ public class Zapatilla {
 	public void setFechaImagen(Date fechaImagen) {
 		this.fechaImagen = fechaImagen;
 	}
+
+	@Override
+	public String toString() {
+		return "Zapatilla [id=" + id + ", talla=" + talla + ", modelo=" + modelo + ", sexo=" + sexo + ", color=" + color
+				+ ", precio=" + precio + ", marca=" + marca + ", fechaImagen=" + fechaImagen + ", categoria="
+				+ categoria + ", idCategoria=" + idCategoria + ", foto=" + foto + ", fotoCaja=" + fotoCaja + "]";
+	}
+	
+	
 	
 }

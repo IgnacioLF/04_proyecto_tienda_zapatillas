@@ -49,7 +49,7 @@ public class ZapatillasControllerAdmin {
 		String rutaRealDelProyecto = 
 				request.getServletContext().getRealPath("");
 		GestorArchivos.borrarImagenesZapatilla(idBorrar, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"","");
+		return gestionarZapatillas(model,"","0");
 	}
 
 	@RequestMapping("nuevaZapatilla")
@@ -67,7 +67,7 @@ public class ZapatillasControllerAdmin {
 				request.getServletContext().getRealPath("");
 		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
 		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"","");		
+		return gestionarZapatillas(model,"","0");		
 	}
 	
 	@RequestMapping("editarZapatilla")
@@ -88,6 +88,6 @@ public class ZapatillasControllerAdmin {
 		GestorArchivos.borrarImagenesZapatilla(Integer.toString(zapatilla.getId()), rutaRealDelProyecto);
 		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
 		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"","");
+		return gestionarZapatillas(model,"","0");
 	}
 }

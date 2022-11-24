@@ -12,7 +12,7 @@
 	introduce tus datos:
 
 	<springform:form modelAttribute="zapatilla" action="guardarNuevaZapatilla" enctype="multipart/form-data">
-	talla: <springform:input path="talla"/> <br>
+	talla: <springform:input path="talla"/>  <br>
 	modelo: <springform:input path="modelo"/> <br>	
 	sexo: <springform:input path="sexo"/> <br>	
 	color: <springform:input path="color"/> <br>
