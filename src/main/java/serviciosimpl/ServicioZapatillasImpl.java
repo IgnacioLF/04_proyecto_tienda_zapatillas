@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import constantes.Paginacion;
+import constantes.UltimasZapatillas;
 import constantesSQL.ConstantesSQL;
 import modelo.Categoria;
 import modelo.Zapatilla;
@@ -69,6 +70,15 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 		SQLQuery query = sessionfactory.getCurrentSession().createSQLQuery(ConstantesSQL.OBTENER_TOTAL_ZAPATILLAS);
 		query.setParameter("modelo", "%" + modelo + "%");
 		return Integer.parseInt(query.list().get(0).toString());
+	}
+
+	@Override
+	public List<Zapatilla> obtenerUltimasZapatillas() {
+		Criteria c = sessionfactory.getCurrentSession().createCriteria(Zapatilla.class);
+		// TODO change order
+		c.addOrder(Order.asc("id"));
+		c.setMaxResults(UltimasZapatillas.HOME_SLIDER);
+		return c.list();
 	}
 	
 	

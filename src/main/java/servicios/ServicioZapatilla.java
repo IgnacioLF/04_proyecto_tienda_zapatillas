@@ -18,4 +18,5 @@ public interface ServicioZapatilla {
 	
 	public void editarZapatilla(Zapatilla z);
 	
+	public List<Zapatilla> obtenerUltimasZapatillas();
 }

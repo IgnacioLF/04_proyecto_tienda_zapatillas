@@ -41,4 +41,14 @@ public class ServicioWebZapatillas {
 			new Gson().toJson(zapatillasDAO.obtenerZapatillaPorID(Integer.parseInt(id)));
 		return new ResponseEntity<String>(json,HttpStatus.OK);		
 	}
+	
+	@RequestMapping("obtenerUltimasZapatillas")
+	public ResponseEntity<String> obtenerzUltimasapatillas() {
+		
+		String json = 
+				new Gson().toJson(zapatillasDAO.obtenerUltimasZapatillas());
+		
+		return new ResponseEntity<String>(json, HttpStatus.OK);
+	}
+	
 }
