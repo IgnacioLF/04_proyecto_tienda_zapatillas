@@ -1,8 +1,12 @@
 package controladores.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import modelo.Usuario;
@@ -35,9 +39,15 @@ public class UsuariosControllerAdmin {
 	}
 	
 	@RequestMapping("guardarNuevoUsuario")
-	public String guardarNuevoUsuario(Usuario usuario, Model model) {
-		ServicioUsuarios.registrarUsuario(usuario);
-		return gestionarUsuarios(model);		
+	public String guardarNuevoUsuario( @ModelAttribute("usuario") @Valid Usuario usuario, BindingResult br ,Model model ) {
+		if( !br.hasErrors()) { 
+			System.out.println("test ---");
+			ServicioUsuarios.registrarUsuario(usuario);
+			return gestionarUsuarios(model);	
+		}else {
+			model.addAttribute("usuario", usuario);
+			return "admin/formRegistroUsuario";
+		}
 	}
 	
 	@RequestMapping("editarUsuario")
@@ -48,8 +58,13 @@ public class UsuariosControllerAdmin {
 	}
 	
 	@RequestMapping("actualizarUsuario")
-	public String actualizarUsuario(Usuario usuario, Model model) {
-		ServicioUsuarios.guardarCambiosUsuario(usuario);
-		return gestionarUsuarios(model);
+	public String actualizarUsuario( @ModelAttribute("usuario") @Valid Usuario usuario, BindingResult br ,Model model) {
+		if( !br.hasErrors()) { 
+			ServicioUsuarios.guardarCambiosUsuario(usuario);
+			return gestionarUsuarios(model);
+		}else {
+			model.addAttribute("usuario", usuario);
+			return "admin/formEditarUsuario";
+		}
 	}
 }

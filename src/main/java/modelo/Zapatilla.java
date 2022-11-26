@@ -27,14 +27,29 @@ public class Zapatilla {
 	private int id;
 	private int talla;
 	
+	@NotEmpty
+	@Size( min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String modelo;
 	
+	@NotEmpty
+	@Size( min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String sexo;
 	
+	@NotEmpty
+	@Size( min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String color;
 	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,###.###")
+	@Min(value = 1, message = "el precio minimo es un euro")
+	@Max(value = 999, message = "el precio maximo es 999 euros")
 	private double precio;
 	
+	@NotEmpty
+	@Size( min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String marca;
 	
 	@Column(nullable = true)

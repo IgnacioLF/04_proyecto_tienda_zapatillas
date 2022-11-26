@@ -53,7 +53,7 @@
 		<tbody>
 			<c:forEach var="usuarios" items="${usuarios}">
 				<tr class="border-b border-indigo-400">
-					<td>
+					<td class="px-4 py-3">
 			 		<object style="height:80px;"  data="../subidas/u${usuarios.id}.png">
 						<img style="height: 80px" src="../subidas/nouser.png"/>
 					</object> 

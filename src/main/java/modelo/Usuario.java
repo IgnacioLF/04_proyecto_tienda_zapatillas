@@ -5,12 +5,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Usuario {
 	
+	@NotEmpty
+	@Size( min = 1, max = 40)
+	@Pattern(regexp = "^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]{1,40}$")
 	private String nombre;
+	
+	@NotEmpty
+	@Size( min = 1, max = 40)
 	private String pass;
+	
+	@NotEmpty
+	@Size( min = 1, max = 40)
 	private String email;
 	
 	@OneToOne
@@ -19,7 +32,11 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private int id;
+
 	private int edad;
+	
+	@NotEmpty
+	@Size( min = 1, max = 40)
 	private String apellidos;
 	
 	public Usuario() {
@@ -34,6 +51,20 @@ public class Usuario {
 		this.edad = edad;
 		this.apellidos = apellidos;
 	}
+	
+	
+	
+	public Usuario(String nombre, String pass, String email, Carrito carrito, int id, int edad, String apellidos) {
+		super();
+		this.nombre = nombre;
+		this.pass = pass;
+		this.email = email;
+		this.carrito = carrito;
+		this.id = id;
+		this.edad = edad;
+		this.apellidos = apellidos;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

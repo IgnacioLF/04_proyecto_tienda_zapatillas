@@ -23,18 +23,23 @@
 	</label>
 	<label class="m-2 flex justify-end items-center"> Modelo: 
 		<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1"  path="modelo"/>
+		<span style="color: red"> <springform:errors path="modelo" /> </span> 
 	</label>
 	<label class="m-2 flex justify-end items-center"> Sexo:
 		<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1" path="sexo"/>
+		<span style="color: red"> <springform:errors path="sexo" /> </span> 
 	</label>
 	<label class="m-2 flex justify-end items-center"> Color:
 		<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1" path="color"/>
+		<span style="color: red"> <springform:errors path="color" /> </span> 
 	</label>
 	<label class="m-2 flex justify-end items-center"> Precio:
 	 	<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1" path="precio"/>
+	 	<span style="color: red"> <springform:errors path="precio" /> </span> 
 	</label>
 	<label class="m-2 flex justify-end items-center"> Marca: 
 		<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1" path="marca"/>
+		<span style="color: red"> <springform:errors path="marca" /> </span> 
 	</label>
 	<label class="m-2 flex justify-end items-center"> Foto:
 		<springform:input cssClass="text-[#000000] ml-[1rem] rounded-md px-2 py-1" path="foto" type="file"/>

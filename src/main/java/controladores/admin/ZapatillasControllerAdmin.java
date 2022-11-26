@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,18 +63,24 @@ public class ZapatillasControllerAdmin {
 	}
 	
 	@RequestMapping("guardarNuevaZapatilla")
-	public String guardarNuevaZapatilla(Zapatilla zapatilla, Model model, HttpServletRequest request ) {
-		zapatilla.setFechaImagen(new Date());
-		zapatillaDAO.registrarZapatilla(zapatilla);
-		String rutaRealDelProyecto = 
-				request.getServletContext().getRealPath("");
-		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
-		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"","0");		
+	public String guardarNuevaZapatilla(@ModelAttribute("zapatilla") @Valid Zapatilla zapatilla, BindingResult br , Model model, HttpServletRequest request ) {
+		if( !br.hasErrors()) { 
+			zapatilla.setFechaImagen(new Date());
+			zapatillaDAO.registrarZapatilla(zapatilla);
+			String rutaRealDelProyecto = 
+					request.getServletContext().getRealPath("");
+			GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
+			GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
+			return gestionarZapatillas(model,"","0");	
+		}else {
+			model.addAttribute("zapatilla", zapatilla);
+			model.addAttribute("categorias", servicioCategorias.obtenerCategoriasParaDesplegable());
+			return "admin/formRegistroZapatilla";
+		}
 	}
 	
 	@RequestMapping("editarZapatilla")
-	public String editarZapatilla(String idEditar, Model model) {
+	public String editarZapatilla( String idEditar, Model model) {
 		Zapatilla zapatilla = zapatillaDAO.obtenerZapatillaPorID(Integer.parseInt(idEditar));
 		zapatilla.setIdCategoria(zapatilla.getCategoria().getId());
 		model.addAttribute("zapatilla", zapatilla);
@@ -80,14 +89,20 @@ public class ZapatillasControllerAdmin {
 	}
 	
 	@RequestMapping("actualizarZapatilla")
-	public String actualizarUsuario(Zapatilla zapatilla, Model model, HttpServletRequest request) {
-		zapatilla.setFechaImagen(new Date());
-		zapatillaDAO.editarZapatilla(zapatilla);
-		String rutaRealDelProyecto = 
-				request.getServletContext().getRealPath("");
-		GestorArchivos.borrarImagenesZapatilla(Integer.toString(zapatilla.getId()), rutaRealDelProyecto);
-		GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
-		GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
-		return gestionarZapatillas(model,"","0");
+	public String actualizarUsuario(@ModelAttribute("zapatilla") @Valid Zapatilla zapatilla, BindingResult br , Model model, HttpServletRequest request) {
+		if( !br.hasErrors()) { 
+			zapatilla.setFechaImagen(new Date());
+			zapatillaDAO.editarZapatilla(zapatilla);
+			String rutaRealDelProyecto = 
+					request.getServletContext().getRealPath("");
+			GestorArchivos.borrarImagenesZapatilla(Integer.toString(zapatilla.getId()), rutaRealDelProyecto);
+			GestorArchivos.guardarFotoZapatilla(zapatilla, rutaRealDelProyecto);
+			GestorArchivos.guardarFotoCajaZapatilla(zapatilla, rutaRealDelProyecto);
+			return gestionarZapatillas(model,"","0");
+		}else {
+			model.addAttribute("zapatilla", zapatilla);
+			model.addAttribute("categorias", servicioCategorias.obtenerCategoriasParaDesplegable());
+			return "admin/formEditarZapatilla";
+		}
 	}
 }
