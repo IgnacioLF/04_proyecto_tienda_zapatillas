@@ -68,4 +68,15 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		return res;
 	}
 
+	@Override
+	public void borrarProductoCarrito(Usuario u, int idProducto) {
+		Carrito c = u.getCarrito();
+		SQLQuery query = sessionFactory.getCurrentSession().
+				createSQLQuery(ConstantesSQL.BORRAR_PRODUCTO_CARRITO);
+		query.setParameter("carrito_id", c.getId());
+		query.setParameter("zapatilla_id", idProducto);
+		query.executeUpdate();
+		
+	}
+
 }
