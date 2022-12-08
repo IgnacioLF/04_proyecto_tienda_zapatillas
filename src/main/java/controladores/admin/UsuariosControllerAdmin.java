@@ -21,7 +21,6 @@ public class UsuariosControllerAdmin {
 
 	@RequestMapping("gestionarUsuarios")
 	public String gestionarUsuarios(Model model) {
-		//pedir los usuarios al dao y meterlos en model para que le llegen a la vista
 		model.addAttribute("usuarios",ServicioUsuarios.obtenerUsuarios());
 		return "admin/gestionarUsuarios";
 	}

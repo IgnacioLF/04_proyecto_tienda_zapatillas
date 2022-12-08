@@ -20,15 +20,12 @@ public class Categoria {
 	@Column(name = "descripcion_categoria", length = 9000)
 	private String descripcion;
 	
-//	@OneToMany( mappedBy = "categoria", fetch = FetchType.LAZY)
-//	private List<Libro> libros = new ArrayList<Libro>();
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
 	public Categoria() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Categoria(String nombre, String descripcion) {
@@ -52,14 +49,6 @@ public class Categoria {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-//	public List<Libro> getLibros() {
-//		return libros;
-//	}
-//
-//	public void setLibros(List<Libro> libros) {
-//		this.libros = libros;
-//	}
 
 	public int getId() {
 		return id;

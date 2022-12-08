@@ -34,9 +34,7 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 	public void procesarPaso1(String nombreCompleto, String direccion, String provincia, String ciudad, String cp,
 			Usuario usuario) {
 		Pedido p = new Pedido();
-		p.setEstado("en proceso");//mas adelante solo podra 
-								//haber un pedido en proceso 
-								//para un mismo usuario
+		p.setEstado("en proceso");
 		p.setUsuario(usuario);
 		p.setNombreCompleto(nombreCompleto);
 		p.setDireccion(direccion);
@@ -77,8 +75,6 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 	}
 	
 	
-	//obtiene el pedido en estado "en proceso" del usuario
-	//actual, y si no existe lo crea
 	private Pedido obtenerPedidoActual(Usuario usuario) {
 		Usuario uBaseDatos = 
 		(Usuario)
@@ -99,7 +95,7 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		}
 		return p;		
 		
-	}//end obtenerPedidoActual
+	}
 
 	@Override
 	public void confirmarPedido(Usuario usuario) {
@@ -107,7 +103,6 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		Usuario uBaseDatos = 
 		(Usuario)
 		sessionFactory.getCurrentSession().get(Usuario.class, usuario.getId());
-		//pasar los productos del carrito a producto pedido
 		Carrito c = uBaseDatos.getCarrito();
 		if(c != null) {
 			for(ProductoCarrito pc : c.getProductosCarrito()) {
@@ -119,27 +114,18 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 				sessionFactory.getCurrentSession().save(pp);
 			}
 		}
-		//borrar los productos del carrito
 		SQLQuery query = 
 				sessionFactory.getCurrentSession().createSQLQuery(
 					ConstantesSQL.BORRAR_PRODUCTOS_CARRITO
 				);
 		query.setParameter("carrito_id", c.getId());
 		query.executeUpdate();
-		//finalizamos pedido
 		p.setEstado(EstadosPedido.COMPLETADO);
 		sessionFactory.getCurrentSession().update(p);
-	}//end confirmarPedido
+	}
 
 	@Override
 	public List<Pedido> obtenerPedidos() {
-		//usando hibernate tenemos 3 formas de hacer consultas:
-		//HQL -> Hibernate Query Language (pseudo SQL)
-		//    -> devuelve objetos de entidades
-		//SQL -> devuelve diferentes tipos de coleccion
-		//    -> la mas comun: List<Map<String,Object>>
-		//Criteria -> evita en gran parte el uso de strings
-		//		   -> devuelve objetos de entidades
 		List<Pedido> pedidos = 
 				sessionFactory.getCurrentSession().
 				createQuery("from Pedido").list();

@@ -22,22 +22,11 @@ public class ServicioWebCarrito {
 	@Autowired
 	private ServicioCarrito servicioCarrito;
 	
-	// TODO check
 	@Autowired
 	private ServicioUsuario servicioUsuarios;
 	
 	@RequestMapping("agregarZapatilla")
 	public ResponseEntity<String> agregarZapatilla(String idProducto, String cantidad , String userId, HttpServletRequest request){
-	/*	System.out.println("id producto" + idProducto);
-		System.out.println("cantidad " + cantidad);
-		System.out.println("usuario" + request.getSession().getAttribute("usuario"));
-		String respuesta= "agregar el producto de id: " + idProducto + "cantidad : " + cantidad + 
-				" al carrito del usuario: " + 
-				((Usuario)request.getSession().getAttribute("usuario")).getNombre();
-		System.out.println(respuesta);
-		servicioCarrito.agregarProducto((Usuario)request.getSession().getAttribute("usuario"), Integer.parseInt(idProducto), Integer.parseInt(cantidad)); */
-		
-		
 		String respuesta= "agregar el producto de id: " + idProducto + "cantidad : " + cantidad + 
 				" al carrito del usuario: " + 
 				servicioUsuarios.obtenerUsuarioPorId(Integer.parseInt(userId));
@@ -53,21 +42,13 @@ public class ServicioWebCarrito {
 	@RequestMapping("obtenerProductosCarrito")
 	public ResponseEntity<String> obtenerProductosCarrito(String userId ,HttpServletRequest request){
 		String respuesta = "";
-		
-/*		respuesta = new Gson().toJson( 
-				servicioCarrito.obtenerProductoCarrito(
-					(Usuario)request.getSession().getAttribute("usuario")
-						)); */
-		
-		
 		Usuario u = servicioUsuarios.obtenerUsuarioPorId(Integer.parseInt(userId));
 		
 		respuesta = new Gson().toJson( 
 				servicioCarrito.obtenerProductoCarrito(u));
 		
 		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
-	}//end obtenerProductosCarrito
-	
+	}
 	@RequestMapping("borrarProductoCarrito")
 	public ResponseEntity<String> borrarProductoCarrito(String userId, String idProducto, HttpServletRequest request) {
 		String respuesta = "";

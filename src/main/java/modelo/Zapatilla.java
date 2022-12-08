@@ -68,7 +68,6 @@ public class Zapatilla {
 	
 
 	public Zapatilla() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Zapatilla(int talla, String modelo, String sexo, String color, double precio, String marca) {
@@ -80,8 +79,6 @@ public class Zapatilla {
 		this.precio = precio;
 		this.marca = marca;
 	}
-	
-	
 	
 	public Zapatilla(int talla, String modelo, String sexo, String color, double precio, String marca,
 			Categoria categoria) {

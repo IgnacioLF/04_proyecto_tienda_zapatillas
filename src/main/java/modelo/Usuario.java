@@ -40,7 +40,6 @@ public class Usuario {
 	private String apellidos;
 	
 	public Usuario() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Usuario(String nombre, String pass, String email, int edad, String apellidos) {

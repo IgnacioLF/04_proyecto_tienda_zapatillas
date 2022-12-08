@@ -76,7 +76,7 @@ public class ServicioZapatillasImpl implements ServicioZapatilla  {
 	public List<Zapatilla> obtenerUltimasZapatillas() {
 		Criteria c = sessionfactory.getCurrentSession().createCriteria(Zapatilla.class);
 		// TODO change order
-		c.addOrder(Order.asc("id"));
+		c.addOrder(Order.desc("id"));
 		c.setMaxResults(UltimasZapatillas.HOME_SLIDER);
 		return c.list();
 	}

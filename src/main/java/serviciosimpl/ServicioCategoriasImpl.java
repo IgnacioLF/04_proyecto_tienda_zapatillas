@@ -23,15 +23,11 @@ public class ServicioCategoriasImpl implements ServicioCategorias{
 	
 	@Override
 	public Map<String, String> obtenerCategoriasParaDesplegable() {
-		//para lanzar sql a traves de hibernate:
 		SQLQuery query = sessionFactory.getCurrentSession().
 				createSQLQuery(ConstantesSQL.SQL_OBTENER_CATEGORIAS_PARA_DESPLEGABLE);
-		//para indicar que la consulta me devuelva elementos de tipo Map
-		//debo indicar la siguiente
 		query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
 		List<Map<String, Object>> resultado = query.list();
 		
-		//debemos transformar de nuevo lo que nos da hibernate:
 		Map<String, String> valoresDesplegable = new HashMap<>();
 		for (Map<String,Object> map : resultado) {
 			System.out.println(" obtenido: " + map.get("id") + " nombre: " + 

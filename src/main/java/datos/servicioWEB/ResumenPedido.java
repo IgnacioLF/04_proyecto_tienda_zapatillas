@@ -3,8 +3,6 @@ package datos.servicioWEB;
 import java.util.List;
 import java.util.Map;
 
-//respuesta desde ServicioWEBPedidos
-//indicando el resumen del pedido realizado por el usuario
 public class ResumenPedido {
 
 	private List<Map<String, Object>> zapatillas;

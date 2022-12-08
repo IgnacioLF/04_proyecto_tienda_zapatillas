@@ -43,11 +43,9 @@ public class ServicioWebUsuarios {
 			GestorArchivos.guardarFotoUsuario(u, foto, rutaRealDelProyecto);	
 		}
 		
-		// @RequestParam("info") String json
-//		Usuario u = new Gson().fromJson(json, Usuario.class);
-//		servicioUsuarios.registrarUsuario(u);
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}
+	
 	@RequestMapping("identificarUsuario")
 	public ResponseEntity<String> 
 		identificarUsuario(String email, String pass, HttpServletRequest request){
@@ -72,5 +70,5 @@ public class ServicioWebUsuarios {
 	public ResponseEntity<String> logout(HttpServletRequest request){
 		request.getSession().invalidate();
 		return new ResponseEntity<String>("ok",HttpStatus.OK);
-	}//end logout
+	}
 }

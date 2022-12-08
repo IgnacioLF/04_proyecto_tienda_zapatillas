@@ -88,7 +88,6 @@ public class GestorArchivos {
 			}
 		}else {
 		}
-	}//end guardarFotoUsuario
-	
+	}
 	
 }
