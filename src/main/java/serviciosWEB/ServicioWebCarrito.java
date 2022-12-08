@@ -67,6 +67,16 @@ public class ServicioWebCarrito {
 		
 		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
 	}//end obtenerProductosCarrito
+	
+	@RequestMapping("borrarProductoCarrito")
+	public ResponseEntity<String> borrarProductoCarrito(String userId, String idProducto, HttpServletRequest request) {
+		String respuesta = "";
+						
+		Usuario u = servicioUsuarios.obtenerUsuarioPorId(Integer.parseInt(userId));
+		servicioCarrito.borrarProductoCarrito(u, Integer.parseInt(idProducto));
+				
+		return new ResponseEntity<String>(respuesta,HttpStatus.OK);
+	}
 
 }
 
